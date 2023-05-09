@@ -3,9 +3,9 @@
 
 This is a NextJs component that displays a histogram of the 20 most common words in a text file. The component uses several libraries and plugins to accomplish this functionality:
 
-1. `use client`: This is not a library or plugin, but rather a code comment indicating that the code is meant to be run on the client-side.
+1. `useState` from the "react" library: This is a React hook that allows the component to maintain state. The component uses `useState` to keep track of the histogram data and whether or not to display the export button.
 
-2. `useState` from the "react" library: This is a React hook that allows the component to maintain state. The component uses `useState` to keep track of the histogram data and whether or not to display the export button.
+2. `Tailwind CSS`: This is a utility-first CSS framework that provides a set of pre-defined CSS classes to create a responsive and customizable user interface. In the given code snippet, it is used to style the buttons and the histogram container div.
 
 3. `saveAs` from the "file-saver" library: This is a plugin that allows the component to download a CSV file of the histogram data.
 
