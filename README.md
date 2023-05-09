@@ -1,34 +1,21 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a NextJs component that displays a histogram of the 20 most common words in a text file. The component uses several libraries and plugins to accomplish this functionality:
 
-## Getting Started
+1. `use client`: This is not a library or plugin, but rather a code comment indicating that the code is meant to be run on the client-side.
 
-First, run the development server:
+2. `useState` from the "react" library: This is a React hook that allows the component to maintain state. The component uses `useState` to keep track of the histogram data and whether or not to display the export button.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+3. `saveAs` from the "file-saver" library: This is a plugin that allows the component to download a CSV file of the histogram data.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. `Chart` from the "chart.js/auto" library: This is a library for creating charts and graphs. The component uses it to create the histogram.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+5. `clsx` from the "clsx" library: This is a utility function for conditionally joining classNames together. The component uses it to conditionally apply styling to the histogram container div based on whether or not the export button is shown.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+The component consists of a function called `IndexPage` that returns JSX, which is compiled to HTML by React. The JSX includes two buttons: one to submit the text file and generate the histogram, and one to export the histogram data to a CSV file. It also includes a div containing a canvas element with an ID of "histogram", which is where the histogram will be rendered. 
 
-## Learn More
+The component uses `useState` to keep track of the histogram data and whether or not to display the export button. When the submit button is clicked, the component sends a GET request to a text file hosted at https://www.terriblytinytales.com/test.txt, splits the text into individual words, and counts the frequency of each word. It then sorts the word counts in descending order and takes the top 20 most frequent words. The resulting data is stored in state using `setHistogramData`, and the export button is displayed using `setShowExportButton`.
 
-To learn more about Next.js, take a look at the following resources:
+When the export button is clicked, the component uses the `saveAs` plugin to create a CSV file containing the top 20 most frequent words and their counts.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The component also includes a function called `renderHistogram`, which uses `Chart` to render the histogram on the canvas element with the ID of "histogram". If `histogramData` is null, the function does nothing. Otherwise, it creates an object containing the data for the histogram, and uses `Chart` to create a bar chart with the specified options.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Overall, this component allows the user to submit a text file, generate a histogram of the 20 most common words in the text, and export the histogram data to a CSV file.
