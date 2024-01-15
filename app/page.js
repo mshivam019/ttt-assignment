@@ -9,8 +9,8 @@ const IndexPage = () => {
   const [showExportButton, setShowExportButton] = useState(false);
 
   const handleSubmit = async () => {
-    const response = await fetch("https://www.terriblytinytales.com/test.txt");
-    const text = await response.text();
+    const file = await fetch("/test.txt").then((response) => response.blob());
+    const text = await file.text();
     const words = text.split(/[,\s'"()\[\]{}?!\\/]+|\.\s|\.\n/).filter((word) => word.length > 0);
     const wordCounts = new Map();
     for (const word of words) {
